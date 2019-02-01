@@ -1,0 +1,2 @@
+# thirstbot
+thirstserv bot
