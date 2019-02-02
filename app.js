@@ -29,7 +29,7 @@ var regex1 = /\w/g;
       segmentCommand(message);   
   }//endif
   else if ((message.content.startsWith('.'))&& (regex1.test(message.content))){
-    let fullCommand = message.content.substr(1);
+    let fullCommand = message.content.substr(1).toLowerCase();
     if (talkedRecently.has(message.author.id)){
       console.log(message.author.id + 'sent a message to quickly')
   return;
