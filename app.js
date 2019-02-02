@@ -13,7 +13,7 @@ var secondLastMessage = '128863550620958721'
 var secondLastMessagePerson
 
 const prefix = '+'; //prefix for the commands
-client.login(process.env.TOKEN); //logs into the client using the token
+ //logs into the client using the token
 
 
 client.on('message', message => { //when a message is recieved
@@ -156,3 +156,5 @@ setTimeout(() => {
   };//end segmentControl
    
 });//end client.on
+
+client.login(process.env.token);
