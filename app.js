@@ -17,22 +17,39 @@ const prefix = '+'; //prefix for the commands
  //logs into the client using the token
 client.on("ready", () => {
   console.log('bot is back online');
-  client.user.setActivity(
+  client.user.setPresence({
+      game: { 
+      name: 'you...',
+        type: 'WATCHING'
+      },
+     status: 'online' })
+  .catch(console.error);
+  
+  let channel = client.channels.get('540823156341080079');
+  function lastmessagefunc(){
+  channel.fetchMessages({ limit: 1 }).then(messages => {
+  let lastMessage = messages.first();
+  //console.log(lastMessage.content)
+  if ((lastMessage.channel.id === lastMessageChannel) && !(lastMessage.member.roles.has(lastMessageRole))){
+    lastMessage.member.addRole(lastMessageRole)
 
-  ).catch(console.error);
+    secondLastMessagePerson = lastMessage.guild.members.get(secondLastMessage)//.then((member) =>{
+      secondLastMessagePerson.removeRole(lastMessageRole)
+
+    secondLastMessage = lastMessage.member.id
+  };//endif
+})
+.catch(console.error);
+    setTimeout(lastmessagefunc, 1000);
+  }//endfunction
+  lastmessagefunc();
 });//end client.on
-function letYaCommand(){
-  if message.member.roles.has('522528090250018832'){
-    message.channel.send('let ya nuts hang')
-  }
-  else if message.member.roles.has('522496689827872807'){
-    message.channel.send('let ya clit hang')
-  }
-}
+
 client.on('message', message => { //when a message is recieved
       if (message.author == client.user) {
         return
     };
+  
 
   let myRole = message.guild.roles.find(role => role.name === "Moderators");
 
@@ -81,18 +98,19 @@ setTimeout(() => {
            };//endcase
   }
 
-  else if ((message.channel.id === lastMessageChannel) && !(message.member.roles.has(lastMessageRole))){
-    message.member.addRole(lastMessageRole)
+//   else if ((message.channel.id === lastMessageChannel) && !(message.member.roles.has(lastMessageRole))){
+//     message.member.addRole(lastMessageRole)
 
-    secondLastMessagePerson = message.guild.members.get(secondLastMessage)//.then((member) =>{
-      secondLastMessagePerson.removeRole(lastMessageRole)
+//     secondLastMessagePerson = message.guild.members.get(secondLastMessage)//.then((member) =>{
+//       secondLastMessagePerson.removeRole(lastMessageRole)
 
-    secondLastMessage = message.member.id
+//     secondLastMessage = message.member.id
 
-}//end elseif
+
+// }//end elseif
 else if ((message.channel.id === '529401700319100928') && (regex2.test(message.content))) {
 
-  if (counter == 1000){
+  if (counter == 1000 - 1){
 
     counter = 0;
     console.log('count reached 1000');
@@ -104,9 +122,7 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
     message.channel.send(message.member.displayName + ' has reached 1000!');
   }//end if
   else if (message.content == counter + 1) {
-    console.log(counter);
     counter = counter + 1;
-    console.log(counter);
 
   } //endif
   else {
