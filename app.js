@@ -45,12 +45,6 @@ client.on("ready", () => {
   lastmessagefunc();
 });//end client.on
 
-
-
-
-
-
-
 client.on('message', message => { //when a message is recieved
       if (message.author == client.user) {
         return
@@ -95,6 +89,7 @@ setTimeout(() => {
       case 'let ya':
         console.log('.letya');
         message.channel.send('let ya nuts hang');
+        letYaCommand();
         break;
       default:
         message.channel.send('unknown command ' + fullCommand);
@@ -110,6 +105,7 @@ setTimeout(() => {
 //       secondLastMessagePerson.removeRole(lastMessageRole)
 
 //     secondLastMessage = message.member.id
+
 
 // }//end elseif
 else if ((message.channel.id === '529401700319100928') && (regex2.test(message.content))) {
