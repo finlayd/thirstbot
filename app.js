@@ -13,7 +13,7 @@ var secondLastMessage = '128863550620958721'
 var secondLastMessagePerson
 
 const prefix = '+'; //prefix for the commands
-client.login(process.env.TOKEN); //logs into the client using the token
+ //logs into the client using the token
 
 
 client.on('message', message => { //when a message is recieved
@@ -22,33 +22,14 @@ client.on('message', message => { //when a message is recieved
     };
   
   let myRole = message.guild.roles.find(role => role.name === "Moderators");
-client.user.setPresence({
-  status: 'online',
-  game: {
-            name: 'you...',
-            type: "WATCHING"
-        },
-  
-  
-})
-  
-  //testing a alg for finding out if the user is a mod
-  //if(message.member.roles.has('540724771747397633')){
-//   if(message.member.roles.some(r=>['540724771747397633','160292661025046528','521228676495310848'].includes(r.id))){
-  
-//     message.channel.send('yea nah your a mod aye');
-//   } else {
-     
-//      message.channel.send('nah yeah you aint a mod');
-//      };
+
      
 var regex1 = /\w/g;
-  //if(message.content.startsWith(prefix)){ //if messages starts with the prefix
   if((message.content.startsWith(prefix)) && (message.member.roles.some(r=>['540724771747397633','160292661025046528','521228676495310848'].includes(r.id)))){ //this also does mod checks so non mods can do "text binds" but not cmds
       segmentCommand(message);   
   }//endif
   else if ((message.content.startsWith('.'))&& (regex1.test(message.content))){
-    let fullCommand = message.content.substr(1);
+    let fullCommand = message.content.substr(1).toLowerCase();
     if (talkedRecently.has(message.author.id)){
       console.log(message.author.id + 'sent a message to quickly')
   return;
@@ -84,7 +65,7 @@ setTimeout(() => {
            };//endcase
   }
   
-  else if (message.channel.id === lastMessageChannel){
+  else if ((message.channel.id === lastMessageChannel) && !(message.member.roles.has(lastMessageRole))){
     message.member.addRole(lastMessageRole)
     
     //client.fetchUser(secondLastMessage).then((user) => {
@@ -175,3 +156,5 @@ setTimeout(() => {
   };//end segmentControl
    
 });//end client.on
+
+client.login(process.env.token);
