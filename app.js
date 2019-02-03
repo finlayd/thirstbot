@@ -18,7 +18,7 @@ client.on("ready", () => {
   console.log('bot is back online');
   client.user.setActivity(
 
-  ).catch(console.error); 
+  ).catch(console.error);
 });//end client.on
 
 client.on('message', message => { //when a message is recieved
@@ -30,6 +30,10 @@ client.on('message', message => { //when a message is recieved
 
 
 var regex1 = /\w/g;
+var regex2 = /[0-9]/g;
+var counter = 0;
+const counterRole = '541465165292503040';
+var oldCounter = '128863550620958721';
   if((message.content.startsWith(prefix)) && (message.member.roles.some(r=>['540724771747397633','160292661025046528','521228676495310848'].includes(r.id)))){ //this also does mod checks so non mods can do "text binds" but not cmds
       segmentCommand(message);
   }//endif
@@ -82,7 +86,24 @@ setTimeout(() => {
   lastMessageFunction(secondLastMessage,lastMessageRole);
 
 
-  }
+}//end elseif
+else if ((message.channel.id === '541460218186432530') && (regex2.test(message.content))) {
+  if (counter == 1000){
+    counter = 0;
+    console.log('count reached 1000');
+    message.member.addRole(counterRole);
+    var prevCounterPerson = message.guild.members.get(oldCounter)
+    prevCounterPerson.removeRole(counterRole);
+    oldCounter = message.member.id;
+    message.channel.send(message.member.name + ' has reached 1000!');
+  }//end if
+  else if (message.content == counter + 1) {
+    counter = counter + 1;
+  } //endif
+  else {
+    message.channel.send('the current number is ' + counter);
+  };//end else
+};//end elseif
 
 
   //function to send a message. bc of the way messages are sent this is required to create multiple instances so they can send with the appropritate variables
