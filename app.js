@@ -21,7 +21,14 @@ client.on("ready", () => {
 
   ).catch(console.error);
 });//end client.on
-
+function letYaCommand(){
+  if message.member.roles.has('522528090250018832'){
+    message.channel.send('let ya nuts hang')
+  }
+  else if message.member.roles.has('522496689827872807'){
+    message.channel.send('let ya clit hang')
+  }
+}
 client.on('message', message => { //when a message is recieved
       if (message.author == client.user) {
         return
@@ -65,6 +72,7 @@ setTimeout(() => {
       case 'let ya':
         console.log('.letya');
         message.channel.send('let ya nuts hang');
+        letYaCommand();
         break;
       default:
         message.channel.send('unknown command ' + fullCommand);
@@ -76,15 +84,10 @@ setTimeout(() => {
   else if ((message.channel.id === lastMessageChannel) && !(message.member.roles.has(lastMessageRole))){
     message.member.addRole(lastMessageRole)
 
-    function lastMessageFunction(secondLastMessage,lastMessageRole){
     secondLastMessagePerson = message.guild.members.get(secondLastMessage)//.then((member) =>{
       secondLastMessagePerson.removeRole(lastMessageRole)
 
     secondLastMessage = message.member.id
-  } //end lastMessageFunction
-
-  lastMessageFunction(secondLastMessage,lastMessageRole);
-
 
 }//end elseif
 else if ((message.channel.id === '529401700319100928') && (regex2.test(message.content))) {
