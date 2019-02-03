@@ -11,7 +11,8 @@ const lastMessageRole = '540823205192138772'
 const lastMessageChannel = '540823156341080079'
 var secondLastMessage = '128863550620958721'
 var secondLastMessagePerson
-
+var counter = 0;
+var oldCounter = '128863550620958721';
 const prefix = '+'; //prefix for the commands
  //logs into the client using the token
 client.on("ready", () => {
@@ -31,9 +32,8 @@ client.on('message', message => { //when a message is recieved
 
 var regex1 = /\w/g;
 var regex2 = /[0-9]/g;
-var counter = 0;
-const counterRole = '541465165292503040';
-var oldCounter = '128863550620958721';
+
+const counterRole = '529720751335538690';
   if((message.content.startsWith(prefix)) && (message.member.roles.some(r=>['540724771747397633','160292661025046528','521228676495310848'].includes(r.id)))){ //this also does mod checks so non mods can do "text binds" but not cmds
       segmentCommand(message);
   }//endif
@@ -87,18 +87,24 @@ setTimeout(() => {
 
 
 }//end elseif
-else if ((message.channel.id === '541460218186432530') && (regex2.test(message.content))) {
+else if ((message.channel.id === '529401700319100928') && (regex2.test(message.content))) {
+
   if (counter == 1000){
+
     counter = 0;
     console.log('count reached 1000');
     message.member.addRole(counterRole);
     var prevCounterPerson = message.guild.members.get(oldCounter)
     prevCounterPerson.removeRole(counterRole);
     oldCounter = message.member.id;
-    message.channel.send(message.member.name + ' has reached 1000!');
+
+    message.channel.send(message.member.displayName + ' has reached 1000!');
   }//end if
   else if (message.content == counter + 1) {
+    console.log(counter);
     counter = counter + 1;
+    console.log(counter);
+
   } //endif
   else {
     message.channel.send('the current number is ' + counter);
