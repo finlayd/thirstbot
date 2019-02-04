@@ -26,17 +26,27 @@ client.on("ready", () => {
   .catch(console.error);
   
   let channel = client.channels.get('540823156341080079');
+  
+  
   function lastmessagefunc(){
   channel.fetchMessages({ limit: 1 }).then(messages => {
   let lastMessage = messages.first();
+  let membersWithRole = lastMessage.guild.roles.get(lastMessageRole).members;
   //console.log(lastMessage.content)
   if ((lastMessage.channel.id === lastMessageChannel) && !(lastMessage.member.roles.has(lastMessageRole))){
-    lastMessage.member.addRole(lastMessageRole)
-
+    
     secondLastMessagePerson = lastMessage.guild.members.get(secondLastMessage)//.then((member) =>{
-      secondLastMessagePerson.removeRole(lastMessageRole)
-
-    secondLastMessage = lastMessage.member.id
+      secondLastMessagePerson.removeRole(lastMessageRole);
+    lastMessage.member.addRole(lastMessageRole);
+    secondLastMessage = lastMessage.member.id;
+    console.log(membersWithRole.size);
+    if(membersWithRole.size > 1){
+      
+      membersWithRole.forEach(member => {
+        member.removeRole(lastMessageRole);
+        console.log('multiple last messages!!');
+      })
+       };//endif
   };//endif
 })
 .catch(console.error);
@@ -44,6 +54,12 @@ client.on("ready", () => {
   }//endfunction
   lastmessagefunc();
 });//end client.on
+
+
+
+
+
+
 
 client.on('message', message => { //when a message is recieved
       if (message.author == client.user) {
@@ -89,7 +105,6 @@ setTimeout(() => {
       case 'let ya':
         console.log('.letya');
         message.channel.send('let ya nuts hang');
-        letYaCommand();
         break;
       default:
         message.channel.send('unknown command ' + fullCommand);
@@ -105,7 +120,6 @@ setTimeout(() => {
 //       secondLastMessagePerson.removeRole(lastMessageRole)
 
 //     secondLastMessage = message.member.id
-
 
 // }//end elseif
 else if ((message.channel.id === '529401700319100928') && (regex2.test(message.content))) {
