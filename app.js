@@ -18,30 +18,30 @@ const prefix = '+'; //prefix for the commands
 client.on("ready", () => {
   console.log('bot is back online');
   client.user.setPresence({
-      game: { 
+      game: {
       name: 'you...',
         type: 'WATCHING'
       },
      status: 'online' })
   .catch(console.error);
-  
+
   let channel = client.channels.get('540823156341080079');
-  
-  
+
+
   function lastmessagefunc(){
   channel.fetchMessages({ limit: 1 }).then(messages => {
   let lastMessage = messages.first();
   let membersWithRole = lastMessage.guild.roles.get(lastMessageRole).members;
   //console.log(lastMessage.content)
   if ((lastMessage.channel.id === lastMessageChannel) && !(lastMessage.member.roles.has(lastMessageRole))){
-    
+
     secondLastMessagePerson = lastMessage.guild.members.get(secondLastMessage)//.then((member) =>{
       secondLastMessagePerson.removeRole(lastMessageRole);
     lastMessage.member.addRole(lastMessageRole);
     secondLastMessage = lastMessage.member.id;
     console.log(membersWithRole.size);
     if(membersWithRole.size > 1){
-      
+
       membersWithRole.forEach(member => {
         member.removeRole(lastMessageRole);
         console.log('multiple last messages!!');
@@ -65,7 +65,7 @@ client.on('message', message => { //when a message is recieved
       if (message.author == client.user) {
         return
     };
-  
+
 
   let myRole = message.guild.roles.find(role => role.name === "Moderators");
 
@@ -77,41 +77,41 @@ const counterRole = '529720751335538690';
   if((message.content.startsWith(prefix)) && (message.member.roles.some(r=>['540724771747397633','160292661025046528','521228676495310848'].includes(r.id)))){ //this also does mod checks so non mods can do "text binds" but not cmds
       segmentCommand(message);
   }//endif
-  else if ((message.content.startsWith('.'))&& (regex1.test(message.content))){
-    let fullCommand = message.content.substr(1).toLowerCase();
-    if (talkedRecently.has(message.author.id)){
-      console.log(message.author.id + 'sent a message to quickly')
-  return;
-    }
-    function commandTimeout(){
-    talkedRecently.add(message.author.id);
-setTimeout(() => {
-  // Removes the user from the set after 2.5 seconds
-  talkedRecently.delete(message.author.id);
-}, 30000); //30 seconds
-};//end commandTimeout
-    commandTimeout()
-
-    switch(fullCommand){
-
-      case 'awh fuck yeah':
-        console.log('.awh fuck yeah');
-        message.channel.send('awh fuck yeah my mums made homemade snag rolls cunt');
-        break;
-      case 'cryo':
-        console.log('.cryo');
-        message.channel.send('all hail cryo');
-        break;
-      case 'let ya':
-        console.log('.letya');
-        message.channel.send('let ya nuts hang');
-        break;
-      default:
-        message.channel.send('unknown command ' + fullCommand);
-        break;
-
-           };//endcase
-  }
+//   else if ((message.content.startsWith('.'))&& (regex1.test(message.content))){
+//     let fullCommand = message.content.substr(1).toLowerCase();
+//     if (talkedRecently.has(message.author.id)){
+//       console.log(message.author.id + 'sent a message to quickly')
+//   return;
+//     }
+//     function commandTimeout(){
+//     talkedRecently.add(message.author.id);
+// setTimeout(() => {
+//   // Removes the user from the set after 2.5 seconds
+//   talkedRecently.delete(message.author.id);
+// }, 30000); //30 seconds
+// };//end commandTimeout
+//     commandTimeout()
+//
+//     switch(fullCommand){
+//
+//       case 'awh fuck yeah':
+//         console.log('.awh fuck yeah');
+//         message.channel.send('awh fuck yeah my mums made homemade snag rolls cunt');
+//         break;
+//       case 'cryo':
+//         console.log('.cryo');
+//         message.channel.send('all hail cryo');
+//         break;
+//       case 'let ya':
+//         console.log('.letya');
+//         message.channel.send('let ya nuts hang');
+//         break;
+//       default:
+//         message.channel.send('unknown command ' + fullCommand);
+//         break;
+//
+//            };//endcase
+//   }//end elseif
 
 //   else if ((message.channel.id === lastMessageChannel) && !(message.member.roles.has(lastMessageRole))){
 //     message.member.addRole(lastMessageRole)
