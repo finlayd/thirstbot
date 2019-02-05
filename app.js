@@ -122,6 +122,9 @@ const counterRole = '529720751335538690';
 //     secondLastMessage = message.member.id
 
 // }//end elseif
+else if ((message.author.id == '155149108183695360') && ((message.contains('muted') || message.contains('banned')))){
+  message.channel.send('thats how mafia works');
+}//endif
 else if ((message.channel.id === '529401700319100928') && (regex2.test(message.content))) {
 
   if (counter == 1000 - 1){
