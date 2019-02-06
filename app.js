@@ -118,7 +118,7 @@ const counterRole = '529720751335538690';//variable for something...
 //     secondLastMessage = message.member.id
 
 // }//end elseif
-else if ((message.author.id == '155149108183695360') && (message.content.contains('mute')){
+else if ((message.author.id == '155149108183695360') && (message.content.contains('mute'))){
   message.channel.send('thats how mafia works').catch(console.error);
 }//endif
 else if ((message.channel.id === '529401700319100928') && (regex2.test(message.content))) {
