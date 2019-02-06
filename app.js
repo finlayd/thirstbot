@@ -55,12 +55,6 @@ client.on("ready", () => {
   lastmessagefunc();
 });//end client.on
 
-
-
-
-
-
-
 client.on('message', message => { //when a message is recieved
       if (message.author == client.user) {
         return
@@ -198,7 +192,8 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
     //the actual command structured is +multipledm *enter* mention name *enter* message *enter* mention name again
     else if (primaryCommand == "multipledm") { //if the command is executed
       //DEBUG: message.channel.send(message.mentions.users.size);
-      var loopEnd = message.mentions.users.size * 2; //number of mentions * 2 (for the messages that go with them)
+      //var loopEnd = message.mentions.users.size * 2; //number of mentions * 2 (for the messages that go with them)
+      var loopEnd = commandArguments.length
       var count = 0;
       var userID
       var messageSend = "";
