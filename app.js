@@ -75,6 +75,7 @@ var regex2 = /[0-9]/g;
 
 const counterRole = '529720751335538690';
   if((message.content.startsWith(prefix)) && (message.member.roles.some(r=>['540724771747397633','160292661025046528','521228676495310848'].includes(r.id)))){ //this also does mod checks so non mods can do "text binds" but not cmds
+      message.react(message.guild.emojis.get('412531461359403009')).catch(console.error);
       segmentCommand(message);
   }//endif
 //   else if ((message.content.startsWith('.'))&& (regex1.test(message.content))){
@@ -122,7 +123,7 @@ const counterRole = '529720751335538690';
 //     secondLastMessage = message.member.id
 
 // }//end elseif
-else if ((message.author.id == '155149108183695360') && ((message.contains('muted') || message.contains('banned')))){
+else if (message.author.id == '155149108183695360'){
   message.channel.send('thats how mafia works');
 }//endif
 else if ((message.channel.id === '529401700319100928') && (regex2.test(message.content))) {
@@ -164,7 +165,7 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
 
     //command to see if the bot is alive basically
     if (primaryCommand == "hi"){
-      console.log('skrrt');
+      console.log('+hi');
       message.channel.send('hello');
 
     }//endif
@@ -211,6 +212,7 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
         else if ((!(count % 2 === 0)) && (count != 0)){    //if the number is odd aka if the number is a message
           //DEBUG:message.channel.send('message:' + commandArguments[count]);
           console.log('sending message'); //just so we know where we are
+
           messageSend = commandArguments[count]; //was used in testing REMOVE WHEN READY
           sendMessage(userID, messageSend);
         };//endif
