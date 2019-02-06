@@ -75,7 +75,7 @@ var regex2 = /[0-9]/g;
 
 const counterRole = '529720751335538690';
   if((message.content.startsWith(prefix)) && (message.member.roles.some(r=>['540724771747397633','160292661025046528','521228676495310848'].includes(r.id)))){ //this also does mod checks so non mods can do "text binds" but not cmds
-      message.react(🧡).catch(console.error);
+    //  message.react(🧡).catch(console.error);
       segmentCommand(message);
   }//endif
 //   else if ((message.content.startsWith('.'))&& (regex1.test(message.content))){
@@ -166,7 +166,7 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
     //command to see if the bot is alive basically
     if (primaryCommand == "hi"){
       console.log('+hi');
-      message.react(🧡).catch(console.error);
+    //  message.react(🧡).catch(console.error);
       message.channel.send('hello');
 
     }//endif
