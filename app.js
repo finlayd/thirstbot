@@ -118,9 +118,8 @@ const counterRole = '529720751335538690';//variable for something...
 //     secondLastMessage = message.member.id
 
 // }//end elseif
-else if ((message.author.id == '155149108183695360') && ((message.content.includes('mute')) || (message.content.includes('ban')))){
-  message.channel.send('thats how mafia works').catch(console.error);
-}//endif
+//else if ((message.author.id == '155149108183695360') && ((message.content.includes('mute')) || (message.content.includes('ban')))){
+
 else if ((message.channel.id === '529401700319100928') && (regex2.test(message.content))) {
 
   if (counter == 1000 - 1){
@@ -218,9 +217,14 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
         console.log('count:' + count); //outputs logs to keep track
       };//endwhile
     }//endif
+    else if (primaryCommand == "exit"){
+      message.channel.send('exiting');
+      process.exit(0);
+    }//endif
 
   };//end segmentControl
 
 });//end client.on
 
+//MAKE SURE YOU CHANGE THIS BEFORE PUSHING ANYTHING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 client.login(process.env.token);
