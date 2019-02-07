@@ -23,7 +23,7 @@ client.on("ready", () => { //once all startup junk is done
         type: 'WATCHING'
       },
      status: 'online' })
-  .catch(console.error);
+  .catch(console.log);
 
   let channel = client.channels.get('540823156341080079');
 
@@ -37,7 +37,7 @@ client.on("ready", () => { //once all startup junk is done
 
     secondLastMessagePerson = lastMessage.guild.members.get(secondLastMessage)//.then((member) =>{
       secondLastMessagePerson.removeRole(lastMessageRole);
-    lastMessage.member.addRole(lastMessageRole).catch(console.error);
+    lastMessage.member.addRole(lastMessageRole).catch(console.log);
     secondLastMessage = lastMessage.member.id;
     console.log(membersWithRole.size);
     //checks if multiple people have role (MOVE TO FUNC)
@@ -50,7 +50,7 @@ client.on("ready", () => { //once all startup junk is done
        };//endif
   };//endif
 })
-.catch(console.error);
+.catch(console.log);
     setTimeout(lastmessagefunc, 1000);//runs the function every second
   }//endfunction
   lastmessagefunc();
@@ -70,7 +70,7 @@ var regex2 = /[0-9]/g;
 
 const counterRole = '529720751335538690';//variable for something...
   if((message.content.startsWith(prefix)) && (message.member.roles.some(r=>['540724771747397633','160292661025046528','521228676495310848'].includes(r.id)))){ //this also does mod checks so non mods can do "text binds" but not cmds
-    //  message.react(🧡).catch(console.error);
+    //  message.react(🧡).catch(console.log);
       segmentCommand(message);
   }//endif
 //   else if ((message.content.startsWith('.'))&& (regex1.test(message.content))){
@@ -160,8 +160,8 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
     //command to see if the bot is alive basically
     if (primaryCommand == "hi"){
       console.log('+hi');
-    //  message.react(🧡).catch(console.error);
-      message.channel.send('hello').catch(console.error);
+    //  message.react(🧡).catch(console.log);
+      message.channel.send('hello').catch(console.log);
 
     }//endif
 
@@ -172,7 +172,7 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
       //message.member.send('skrrt')
        commandArguments.forEach((value) => {
          //productString = productString + value
-       message.member.send(value).catch(console.error);
+       message.member.send(value).catch(console.log);
        });//endforeach
     }//endif
 
@@ -186,8 +186,6 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
       });//endforeach
       user.send(text);
     }//endif
-
-
 
     //the actual command structured is +multipledm *enter* mention name *enter* message *enter* mention name again
     else if (primaryCommand == "multipledm") { //if the command is executed
@@ -210,7 +208,7 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
           console.log('sending message'); //just so we know where we are
 
           messageSend = commandArguments[count]; //was used in testing REMOVE WHEN READY
-          sendMessage(userID, messageSend).catch(console.error);
+          sendMessage(userID, messageSend).catch(console.log);
         };//endif
 
         count += 1; //adds one to count
