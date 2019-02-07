@@ -151,7 +151,7 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
   //function to run commands, basically the whole program. (I forgot to modularise)
   function segmentCommand(message) {
     let fullCommand = message.content.substr(1); //delete the prefix
-    let splitCommand = fullCommand.split("\n"); //use enters to seperate arguments
+    let splitCommand = fullCommand.split("\n*"); //use enters to seperate arguments
     let primaryCommand = splitCommand[0]; //set the primary command to the first argument
     let commandArguments = splitCommand.slice(1); //del primary command from the rest of the arguments
 
