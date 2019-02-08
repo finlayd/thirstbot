@@ -52,7 +52,7 @@ client.on("ready", () => { //once all startup junk is done
     setTimeout(lastmessagefunc, 1000);//runs the function every second
   }//endfunction
   lastmessagefunc();
-});//end client.on
+ })//end client.on
 
 client.on('message', message => { //when a message is recieved
       if (message.author == client.user) {
@@ -145,13 +145,17 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
   function sendMessage(userID, messageSend){
     client.fetchUser(userID).then((user) => {
     user.send(messageSend).then(message => console.log(`Sent message: ${message.content}`));
-    });
+    })
   };
 
   //function to run commands, basically the whole program. (I forgot to modularise)
   function segmentCommand(message) {
     let fullCommand = message.content.substr(1); //delete the prefix
-    let splitCommand = fullCommand.split("\n*"); //use enters to seperate arguments
+    if (fullCommand.startsWith('multipledm')){
+      var splitCommand = fullCommand.split("\n*"); //use enters to seperate arguments
+    } else {
+      var splitCommand = fullCommand.split(' ');
+    };//enduif
     let primaryCommand = splitCommand[0]; //set the primary command to the first argument
     let commandArguments = splitCommand.slice(1); //del primary command from the rest of the arguments
 
@@ -162,7 +166,9 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
       message.channel.send('hello');
 
     }//endif
-
+    else if (primaryCommand == "test"){
+      message.channel.send(commandArguments[0]);
+    }
     //testing command to dm user *broken*
     else if (primaryCommand == "dm"){
 
@@ -171,7 +177,7 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
        commandArguments.forEach((value) => {
          //productString = productString + value
        message.member.send(value);
-       });//endforeach
+       })//endforeach
     }//endif
 
     //testing command to message someone mentioned, doesnt do multiple in one command tho
@@ -181,7 +187,7 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
       var text = "";
       commandArguments.forEach((value) => {
         text = text + " " + value
-      });//endforeach
+      })//endforeach
       user.send(text);
     }//endif
 
@@ -217,10 +223,16 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
       message.channel.send('exiting');
       process.exit(0);
     }//endif
+    else if (primaryCommand == "resetlm"){
+      let membersWithRole = message.guild.roles.get(lastMessageRole).members;
+       membersWithRole.forEach(member => {
+       member.removeRole(lastMessageRole);
+     });
+    }
 
   };//end segmentControl
 
-});//end client.on
+})//end client.on
 
 //MAKE SURE YOU CHANGE THIS BEFORE PUSHING ANYTHING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 client.login(process.env.token);
