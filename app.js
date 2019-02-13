@@ -146,6 +146,7 @@ else if ((message.channel.id === '529401700319100928') && (regex2.test(message.c
     client.fetchUser(userID).then((user) => {
     user.send(messageSend).then(message => console.log(`Sent message: ${message.content}`));
     })
+   message.channel.send('message sent to ' + userID)
   };
 
   //function to run commands, basically the whole program. (I forgot to modularise)
