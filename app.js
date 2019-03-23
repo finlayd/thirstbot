@@ -46,7 +46,6 @@ client.on("ready", () => { //once all startup junk is done aka the bot is ready
         type: 'WATCHING'
       },
      status: 'online' })
-  lm.lastmessagefunc();
  })//end client.on
 
 con.query(`USE ${'thirstbot'}`);
