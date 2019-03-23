@@ -59,6 +59,7 @@ client.on('message', message => { //when a message is recieved
     //  message.react(🧡);
       segmentCommand(message);
   }//endif
+
 else if ((message.channel.id === botcommandsChannel) && message.content.startsWith(usrpref)){
   let fullCommand = message.content.substr(1);
   var splitCommand = fullCommand.split(' ');
