@@ -5,6 +5,8 @@ This bot was created to help moderate and bring some fun features to the thirsts
 https://discord.gg/7A4y2VY
 =================
 
+*it is very important to stress: this does not represent my ability to produce proffessionally polished applications for public use. This was a rushed, personal project that acted more as an experiment with nodejs for me rather than to produce a well functioning program. As a result, many of the features are hardcoded to work in 1 server setup in a specific way, and many of the features do not function smoothly.*
+
 What it does
 ------------
 1. last-message gamemode
